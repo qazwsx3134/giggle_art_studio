@@ -12,7 +12,7 @@ export default extendConfig(baseConfig, () => {
     },
     plugins: [
       staticAdapter({
-        origin: 'https://qazwsx3134.github.io/giggle/',
+        origin: 'https://qazwsx3134.github.io/giggle_art_studio/',
       }),
     ],
   };

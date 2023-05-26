@@ -6,17 +6,18 @@ import {
   useVisibleTask$,
   type Signal,
 } from "@builder.io/qwik";
-// import { useLocation } from "@builder.io/qwik-city";
+import { useLocation } from "@builder.io/qwik-city";
 import gsap from "gsap";
 import { GiggleArtStudio } from "~/components/icon/giggleArtStudio";
 import { SketchStar } from "~/components/icon/sketchStar";
+import { transformToGiggle } from "~/utils/github";
 
 interface Props {
   onDone?: Signal<boolean>;
 }
 
 export default component$<Props>((props) => {
-  // const location = useLocation();
+  const location = useLocation();
   const timeLineStore = useStore<{ timeLine: NoSerialize<gsap.core.Timeline> }>(
     {
       timeLine: undefined,
@@ -27,14 +28,21 @@ export default component$<Props>((props) => {
   useVisibleTask$(async () => {
     const loaderTimeline = gsap.timeline({ id: "giggleTimeline" });
 
-    const path = document.querySelector(".giggle-path") as SVGPathElement;
+    const textPath = document.querySelector(".giggle-path") as SVGPathElement;
+    const starPath = document.querySelector(
+      ".sketch-star-path"
+    ) as SVGPathElement;
+    const starLength = starPath.getTotalLength();
 
-    gsap.set(path, {
+    gsap.set(textPath, {
       strokeDasharray: 400,
+    });
+    gsap.set(starPath, {
+      strokeDasharray: starLength,
     });
 
     loaderTimeline.fromTo(
-      path,
+      textPath,
       {
         strokeDashoffset: 400,
       },
@@ -62,6 +70,31 @@ export default component$<Props>((props) => {
       }
     );
 
+    loaderTimeline.fromTo(
+      starPath,
+      {
+        strokeDashoffset: starLength,
+      },
+      {
+        strokeDashoffset: 0,
+        fill: "white",
+        duration: 1.5,
+      },
+      "<"
+    );
+
+    loaderTimeline.to(".sketch-star", {
+      rotation: 360,
+      translateX: -10,
+      translateY: -100,
+      strokeDashoffset: 0,
+      fill: "white",
+      ease: "elastic.out(1, 0.3)",
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+    });
+
     timeLineStore.timeLine = noSerialize(loaderTimeline);
   });
 
@@ -76,11 +109,11 @@ export default component$<Props>((props) => {
   return (
     <div class="flex w-60 relative h-full items-center justify-center">
       <GiggleArtStudio class="absolute z-[55]" />
-      <SketchStar class="absolute w-6 top-1/3 right-0"/>
+      <SketchStar class="absolute w-6 top-3/5 right-0 sketch-star z-[55]" />
       <img
         id="brush-giggle"
-        src="/images/loader/brush.webp"
-        class="absolute z-[56] "
+        src={transformToGiggle(location.url.origin, "images/loader/brush.webp")}
+        class="absolute z-[54] "
         width={240}
         height={240}
         alt=""

@@ -1,6 +1,6 @@
 import { component$, QwikIntrinsicElements } from "@builder.io/qwik";
 import { useLocation } from "@builder.io/qwik-city";
-import { transformToRonghao } from "~/utils/github";
+import { transformToGiggle } from "~/utils/github";
 
 export default component$(
   (
@@ -12,7 +12,7 @@ export default component$(
     return (
       <img
         {...props}
-        src={transformToRonghao(
+        src={transformToGiggle(
           location.url.origin,
           "/images/loader/starSmile.webp"
         )}

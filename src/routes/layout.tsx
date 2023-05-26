@@ -7,8 +7,6 @@ import {
 } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
 
-import Header from "~/components/starter/header/header";
-import Footer from "~/components/starter/footer/footer";
 import RightSlide from "~/components/loader/background/rightSlide";
 
 import styles from "./styles.css?inline";
@@ -26,19 +24,17 @@ export default component$(() => {
 
   useVisibleTask$(() => {
     setTimeout(() => {
-      // onDone.value = true;
+      onDone.value = true;
     }, 4000);
   });
   return (
     <>
       <RightSlide onDone={onDone}>
-        <Giggle q:slot="icon"/>
+        <Giggle q:slot="icon" />
       </RightSlide>
-      <Header />
       <main>
         <Slot />
       </main>
-      <Footer />
     </>
   );
 });
