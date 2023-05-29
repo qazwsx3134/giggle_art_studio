@@ -25,7 +25,7 @@ export default component$(() => {
   useVisibleTask$(() => {
     setTimeout(() => {
       onDone.value = true;
-    }, 4000);
+    }, 2000);
   });
   return (
     <>
