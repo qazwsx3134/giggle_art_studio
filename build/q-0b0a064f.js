@@ -1,1 +1,0 @@
-import{H as t}from"./q-175c7545.js";import{t as a}from"./q-4a92e7a0.js";import{a as i}from"./q-9bb18ca5.js";const n=o=>{const r=i();return t("img",{...o,src:a(r.url.origin,"/images/loader/starSmile.webp")},{alt:""},0,"uk_0")};export{n as s_zov20CdSKLU};
