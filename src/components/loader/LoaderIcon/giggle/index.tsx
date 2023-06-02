@@ -8,7 +8,8 @@ import {
 } from "@builder.io/qwik";
 import { useLocation } from "@builder.io/qwik-city";
 import gsap from "gsap";
-import { GiggleArtStudio } from "~/components/icon/giggleArtStudio";
+import { ArtStudio } from "~/components/icon/artStudioText";
+import { GiggleText } from "~/components/icon/giggleText";
 import { SketchStar } from "~/components/icon/sketchStar";
 import { transformToGiggle } from "~/utils/github";
 
@@ -28,31 +29,155 @@ export default component$<Props>((props) => {
   useVisibleTask$(async () => {
     const loaderTimeline = gsap.timeline({ id: "giggleTimeline" });
 
-    const textPath = document.querySelector(".giggle-path") as SVGPathElement;
+    const textPath1 = document.querySelector(
+      ".giggle-path-1"
+    ) as SVGPathElement;
+    const textPath1Length = textPath1.getTotalLength();
+    const textPath2 = document.querySelector(
+      ".giggle-path-2"
+    ) as SVGPathElement;
+    const textPath2Length = textPath2.getTotalLength();
+    const textPath3 = document.querySelector(
+      ".giggle-path-3"
+    ) as SVGPathElement;
+    const textPath3Length = textPath3.getTotalLength();
+    const textPath4 = document.querySelector(
+      ".giggle-path-4"
+    ) as SVGPathElement;
+    const textPath4Length = textPath4.getTotalLength();
+    const textPath5 = document.querySelector(
+      ".giggle-path-5"
+    ) as SVGPathElement;
+    const textPath5Length = textPath5.getTotalLength();
+    const textPath6 = document.querySelector(
+      ".giggle-path-6"
+    ) as SVGPathElement;
+    const textPath6Length = textPath6.getTotalLength();
+
+    const artPath = document.querySelector(
+      ".art-path-1"
+    ) as SVGPathElement;
+    const artPathLength = 350;
+
+    const studioPath = document.querySelector(
+      ".studio-path-1"
+    ) as SVGPathElement;
+    const studioPathLength = 450;
+
     const starPath = document.querySelector(
       ".sketch-star-path"
     ) as SVGPathElement;
     const starLength = starPath.getTotalLength();
 
-    gsap.set(textPath, {
-      strokeDasharray: 400,
-    });
-    gsap.set(starPath, {
-      strokeDasharray: starLength,
+    const textPathArray = [
+      {
+        path: textPath1,
+        length: textPath1Length,
+      },
+      {
+        path: textPath2,
+        length: textPath2Length,
+      },
+      {
+        path: textPath3,
+        length: textPath3Length,
+      },
+      {
+        path: textPath4,
+        length: textPath4Length,
+      },
+      {
+        path: textPath5,
+        length: textPath5Length,
+      },
+      {
+        path: textPath6,
+        length: textPath6Length,
+      },
+      {
+        path: artPath,
+        length: artPathLength,
+      },
+      {
+        path: studioPath,
+        length: studioPathLength,
+      },
+    ];
+
+    textPathArray.forEach((item) => {
+      gsap.set(item.path, {
+        strokeDasharray: item.length,
+      });
     });
 
+    // Giggle
     loaderTimeline.fromTo(
-      textPath,
+      [textPath1, textPath6],
       {
-        strokeDashoffset: 400,
+        strokeDashoffset: textPath1Length,
       },
       {
         strokeDashoffset: 0,
         fill: "white",
-        duration: 1.5,
-        delay: 0.4,
-      }
+        duration: 1,
+      },
+      0.4
     );
+
+    loaderTimeline.fromTo(
+      [textPath2, textPath5],
+      {
+        strokeDashoffset: textPath2Length,
+      },
+      {
+        strokeDashoffset: 0,
+        fill: "white",
+        duration: 1,
+      },
+      "<=0.4"
+    );
+
+    loaderTimeline.fromTo(
+      [textPath3, textPath4],
+      {
+        strokeDashoffset: textPath3Length,
+      },
+      {
+        strokeDashoffset: 0,
+        fill: "white",
+        duration: 1,
+      },
+      "<=0.4"
+    );
+
+    // Brush
+
+    // Art studio
+    loaderTimeline.fromTo(
+      [artPath],
+      {
+        strokeDashoffset: artPathLength,
+      },
+      {
+        strokeDashoffset: 0,
+        fill: "white",
+        duration: 1,
+      },
+    );
+    loaderTimeline.fromTo(
+      [studioPath],
+      {
+        strokeDashoffset: studioPathLength,
+      },
+      {
+        strokeDashoffset: 0,
+        fill: "white",
+        duration: 1,
+      },
+    );
+    gsap.set(starPath, {
+      strokeDasharray: starLength,
+    });
 
     loaderTimeline.fromTo(
       "#brush-giggle",
@@ -108,7 +233,11 @@ export default component$<Props>((props) => {
 
   return (
     <div class="flex w-60 relative h-full items-center justify-center">
-      <GiggleArtStudio class="absolute z-[55]" />
+      <div class="absolute z-[55] flex flex-col items-center">
+        <GiggleText />
+        <ArtStudio />
+      </div>
+
       <SketchStar class="absolute w-6 top-3/5 right-0 sketch-star z-[55]" />
       <img
         id="brush-giggle"
