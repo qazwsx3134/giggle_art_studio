@@ -22,8 +22,8 @@ export default component$<Props>((props) => {
       { scaleX: 0 },
       {
         scaleX: 1,
-        duration: 0.6,
-        ease: "power2.in",
+        duration: 0.4,
+        ease: "power3.in",
         transformOrigin: "left",
         onComplete: () => {
           console.log("done");
@@ -77,8 +77,8 @@ export default component$<Props>((props) => {
   return (
     <div id="loaderLayer" class="loader h-screen w-full absolute z-50 flex">
       <div class="binderContainer absolute top-0 w-full flex">
-        <div class="flex blinderBG bg-teal-600 h-screen grow w-full absolute z-40"></div>
-        <div class="flex blinder bg-green-200 h-screen grow w-full absolute z-50">
+        <div class="flex blinderBG bg-secondaryBlue-500 h-screen grow w-full absolute z-40"></div>
+        <div class="flex blinder bg-midNightGreen-500 h-screen grow w-full absolute z-50">
           <div
             id="icon"
             class="items-center justify-center flex-grow flex w-full h-full absolute z-[56]"

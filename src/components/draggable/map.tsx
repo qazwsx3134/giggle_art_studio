@@ -1,13 +1,10 @@
 import { $, component$, useVisibleTask$ } from "@builder.io/qwik";
-import { useLocation } from "@builder.io/qwik-city";
 
 import gsap from "gsap";
 
 import Draggable from "gsap/Draggable";
-import { transformToGiggle } from "~/utils/github";
 
 export default component$(() => {
-  const location = useLocation();
   useVisibleTask$(() => {
     gsap.registerPlugin(Draggable);
 
@@ -33,12 +30,7 @@ export default component$(() => {
           </button>
         </div>
         <div class="w-full relative">
-          <img
-            width={4112}
-            height={2741}
-            src={transformToGiggle(location.url.origin, "/images/map.webp")}
-            alt=""
-          />
+          <img width={4112} height={2741} src={"/images/map.webp"} alt="" />
         </div>
       </div>
     </div>

@@ -6,19 +6,16 @@ import {
   useVisibleTask$,
   type Signal,
 } from "@builder.io/qwik";
-import { useLocation } from "@builder.io/qwik-city";
 import gsap from "gsap";
 import { ArtStudio } from "~/components/icon/artStudioText";
 import { GiggleText } from "~/components/icon/giggleText";
-import { SketchStar } from "~/components/icon/sketchStar";
-import { transformToGiggle } from "~/utils/github";
 
 interface Props {
   onDone?: Signal<boolean>;
 }
 
 export default component$<Props>((props) => {
-  const location = useLocation();
+
   const timeLineStore = useStore<{ timeLine: NoSerialize<gsap.core.Timeline> }>(
     {
       timeLine: undefined,
@@ -54,20 +51,13 @@ export default component$<Props>((props) => {
     ) as SVGPathElement;
     const textPath6Length = textPath6.getTotalLength();
 
-    const artPath = document.querySelector(
-      ".art-path-1"
-    ) as SVGPathElement;
+    const artPath = document.querySelector(".art-path-1") as SVGPathElement;
     const artPathLength = 350;
 
     const studioPath = document.querySelector(
       ".studio-path-1"
     ) as SVGPathElement;
     const studioPathLength = 450;
-
-    const starPath = document.querySelector(
-      ".sketch-star-path"
-    ) as SVGPathElement;
-    const starLength = starPath.getTotalLength();
 
     const textPathArray = [
       {
@@ -118,10 +108,9 @@ export default component$<Props>((props) => {
       },
       {
         strokeDashoffset: 0,
-        fill: "white",
-        duration: 1,
+        duration: 0.4,
       },
-      0.4
+      0.5
     );
 
     loaderTimeline.fromTo(
@@ -131,8 +120,7 @@ export default component$<Props>((props) => {
       },
       {
         strokeDashoffset: 0,
-        fill: "white",
-        duration: 1,
+        duration: 0.4,
       },
       "<=0.4"
     );
@@ -144,14 +132,35 @@ export default component$<Props>((props) => {
       },
       {
         strokeDashoffset: 0,
-        fill: "white",
-        duration: 1,
+        duration: 0.4,
       },
       "<=0.4"
     );
 
     // Brush
+    gsap.set("#brush-giggle", {
+      clipPath:
+        "polygon(0 28%, 0% 41%, 0 37%, 0 41%, 0 38%, 0 43%, 0 39%, 0 39%, 0 39%, 0 27%, 5% 28%, 3% 25%, 4% 29%, 3% 26%, 3% 29%)",
+    });
 
+    loaderTimeline.to("#brush-giggle", {
+      keyframes: {
+        "0%": {
+          clipPath:
+            "polygon(11% 26%, 10% 26%, 11% 26%, 10% 26%, 12% 26%, 0 35%, 0 35%, 0 35%, 0 35%, 0% 34%)",
+        },
+        "50%": {
+          clipPath:
+            "polygon(11% 26%, 31% 39%, 44% 47%, 51% 47%, 56% 46%, 56% 74%, 46% 72%, 38% 71%, 1% 60%, 0% 34%)",
+        },
+        "100%": {
+          clipPath:
+            "polygon(11% 26%, 31% 39%, 64% 30%, 100% 30%, 100% 47%, 85% 70%, 58% 80%, 28% 73%, 1% 60%, 0% 34%)",
+        },
+      },
+      duration: 0.8,
+      ease: "circ.inOut",
+    });
     // Art studio
     loaderTimeline.fromTo(
       [artPath],
@@ -160,9 +169,8 @@ export default component$<Props>((props) => {
       },
       {
         strokeDashoffset: 0,
-        fill: "white",
-        duration: 1,
-      },
+        duration: 0.4,
+      }
     );
     loaderTimeline.fromTo(
       [studioPath],
@@ -171,54 +179,9 @@ export default component$<Props>((props) => {
       },
       {
         strokeDashoffset: 0,
-        fill: "white",
-        duration: 1,
-      },
-    );
-    gsap.set(starPath, {
-      strokeDasharray: starLength,
-    });
-
-    loaderTimeline.fromTo(
-      "#brush-giggle",
-      {
-        clipPath: "polygon(0 0, 1% 0, 0 100%, 0 100%)",
-        scaleX: 1.5,
-        scaleY: 1.0,
-      },
-      {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-        scaleX: 1.5,
-        scaleY: 1.3,
-        ease: "power2.inOut",
-        duration: 0.6,
+        duration: 0.4,
       }
     );
-
-    loaderTimeline.fromTo(
-      starPath,
-      {
-        strokeDashoffset: starLength,
-      },
-      {
-        strokeDashoffset: 0,
-        fill: "white",
-        duration: 1.5,
-      },
-      "<"
-    );
-
-    loaderTimeline.to(".sketch-star", {
-      rotation: 360,
-      translateX: -10,
-      translateY: -100,
-      strokeDashoffset: 0,
-      fill: "white",
-      ease: "elastic.out(1, 0.3)",
-      duration: 1.5,
-      repeat: -1,
-      yoyo: true,
-    });
 
     timeLineStore.timeLine = noSerialize(loaderTimeline);
   });
@@ -232,19 +195,17 @@ export default component$<Props>((props) => {
   });
 
   return (
-    <div class="flex w-60 relative h-full items-center justify-center">
+    <div class="flex w-full relative h-full items-center justify-center">
       <div class="absolute z-[55] flex flex-col items-center">
         <GiggleText />
         <ArtStudio />
       </div>
-
-      <SketchStar class="absolute w-6 top-3/5 right-0 sketch-star z-[55]" />
       <img
         id="brush-giggle"
-        src={transformToGiggle(location.url.origin, "images/loader/brush.webp")}
+        src={"images/loader/brush1.png"}
         class="absolute z-[54] "
-        width={240}
-        height={240}
+        width={700}
+        height={511}
         alt=""
       />
     </div>
