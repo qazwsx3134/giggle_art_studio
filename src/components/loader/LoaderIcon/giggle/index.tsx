@@ -15,7 +15,6 @@ interface Props {
 }
 
 export default component$<Props>((props) => {
-
   const timeLineStore = useStore<{ timeLine: NoSerialize<gsap.core.Timeline> }>(
     {
       timeLine: undefined,
@@ -52,51 +51,59 @@ export default component$<Props>((props) => {
     const textPath6Length = textPath6.getTotalLength();
 
     const artPath = document.querySelector(".art-path-1") as SVGPathElement;
-    const artPathLength = 350;
+    const artPathLength = 200;
 
     const studioPath = document.querySelector(
       ".studio-path-1"
     ) as SVGPathElement;
-    const studioPathLength = 450;
+    const studioPathLength = 200;
 
     const textPathArray = [
       {
         path: textPath1,
         length: textPath1Length,
+        startPoint: -90,
       },
       {
         path: textPath2,
-        length: textPath2Length,
+        length: `0 ${textPath2Length}`,
+        startPoint: -100,
       },
       {
         path: textPath3,
         length: textPath3Length,
+        startPoint: -90,
       },
       {
         path: textPath4,
         length: textPath4Length,
+        startPoint: -90,
       },
       {
         path: textPath5,
         length: textPath5Length,
+        startPoint: -100,
       },
       {
         path: textPath6,
         length: textPath6Length,
+        startPoint: -100,
       },
       {
         path: artPath,
         length: artPathLength,
+        startPoint: -114,
       },
       {
         path: studioPath,
         length: studioPathLength,
+        startPoint: -100,
       },
     ];
 
     textPathArray.forEach((item) => {
       gsap.set(item.path, {
-        strokeDasharray: item.length,
+        strokeDashoffset: item.startPoint,
       });
     });
 
@@ -104,11 +111,11 @@ export default component$<Props>((props) => {
     loaderTimeline.fromTo(
       [textPath1, textPath6],
       {
-        strokeDashoffset: textPath1Length,
+        strokeDasharray: `0 ${textPath1Length}`,
       },
       {
-        strokeDashoffset: 0,
-        duration: 0.4,
+        strokeDasharray: `${textPath1Length} 0`,
+        duration: 0.5,
       },
       0.5
     );
@@ -116,25 +123,25 @@ export default component$<Props>((props) => {
     loaderTimeline.fromTo(
       [textPath2, textPath5],
       {
-        strokeDashoffset: textPath2Length,
+        strokeDasharray: `0 ${textPath2Length}`,
       },
       {
-        strokeDashoffset: 0,
-        duration: 0.4,
+        strokeDasharray: `${textPath2Length} 0`,
+        duration: 0.5,
       },
-      "<=0.4"
+      "<"
     );
 
     loaderTimeline.fromTo(
       [textPath3, textPath4],
       {
-        strokeDashoffset: textPath3Length,
+        strokeDasharray: `0 ${textPath3Length}`,
       },
       {
-        strokeDashoffset: 0,
-        duration: 0.4,
+        strokeDasharray: `${textPath3Length} 0`,
+        duration: 0.5,
       },
-      "<=0.4"
+      "<"
     );
 
     // Brush
@@ -165,21 +172,21 @@ export default component$<Props>((props) => {
     loaderTimeline.fromTo(
       [artPath],
       {
-        strokeDashoffset: artPathLength,
+        strokeDasharray: `0 ${artPathLength}`,
       },
       {
-        strokeDashoffset: 0,
-        duration: 0.4,
+        strokeDasharray: `${artPathLength} 0`,
+        duration: 2,
       }
     );
     loaderTimeline.fromTo(
       [studioPath],
       {
-        strokeDashoffset: studioPathLength,
+        strokeDasharray: `0 ${studioPathLength}`,
       },
       {
-        strokeDashoffset: 0,
-        duration: 0.4,
+        strokeDasharray: `${studioPathLength} 0`,
+        duration: 2,
       }
     );
 
