@@ -77,8 +77,8 @@ export default component$<Props>((props) => {
   return (
     <div id="loaderLayer" class="loader h-screen w-full absolute z-50 flex">
       <div class="binderContainer absolute top-0 w-full flex">
-        <div class="flex blinderBG bg-secondaryBlue-500 h-screen grow w-full absolute z-40"></div>
-        <div class="flex blinder bg-midNightGreen-500 h-screen grow w-full absolute z-50">
+        <div class="flex blinderBG bg-black-300 h-screen grow w-full absolute z-40"></div>
+        <div class="flex blinder bg-black-900 h-screen grow w-full absolute z-50">
           <div
             id="icon"
             class="items-center justify-center flex-grow flex w-full h-full absolute z-[56]"

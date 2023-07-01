@@ -25,15 +25,15 @@ export default component$(() => {
   useVisibleTask$(() => {
     setTimeout(() => {
       onDone.value = true;
-    }, 3000);
+    }, 1000);
   });
   return (
     <>
       <RightSlide onDone={onDone}>
         <Giggle q:slot="icon" />
       </RightSlide>
-      <main class="h-full min-h-screen w-full bg-base-200">
-        <Slot />
+      <main class="h-full min-h-screen w-full bg-black-500">
+        {onDone.value && <Slot />}
       </main>
     </>
   );
