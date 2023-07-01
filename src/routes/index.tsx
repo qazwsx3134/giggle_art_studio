@@ -26,14 +26,29 @@ export default component$(() => {
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
       </div>
-      <div class="w-full bg-black-500 relative z-10 ">
-        <div class="sticky top-0 h-[60px] mb-5 bg-dark-500 z-20">
-          <div class="w-[980px] m-auto">
-            <div>LOGO</div>
-            <div>GIGGLE</div>
+      <div class="w-full bg-black-500 relative z-10">
+        <div class="sticky top-0 h-[60px] bg-dark-500 z-20">
+          <div class="w-[980px] m-auto flex navbar shadow-xl">
+            <div class="flex-none">LOGO</div>
+            <div class="flex-1 font-serif text-2xl">GIGGLE</div>
+            <div class="flex-none"></div>
           </div>
         </div>
         <div class="w-[980px] m-auto relative">
+          <div class="w-full flex flex-col items-center justify-center gap-6 text-white-500 my-6">
+            <div class="text-5xl">Liquid Art</div>
+            <div class="text-2xl text-white-700">introduce Liquid art</div>
+            <button class="btn btn-outline btn-accent ring-1 ring-accent hover:ring-0 text-2xl">
+              聯絡我們
+            </button>
+          </div>
+          {/* First section */}
+          <div class="grid grid-cols-12 grid-rows-8 gap-4 w-full h-[100vh] my-4">
+            <div class="col-span-4 row-span-5 bg-dark-500 rounded-2xl"></div>
+            <div class="col-span-8 row-span-5 bg-dark-500 rounded-2xl"></div>
+            <div class="col-span-8 row-span-3 bg-dark-500 rounded-2xl"></div>
+            <div class="col-span-4 row-span-3 bg-dark-500 rounded-2xl"></div>
+          </div>
           <div class="grid grid-cols-12 grid-rows-8 gap-4 h-[2500px]">
             {/*1. 2 span row */}
             <div class="col-span-8 row-span-2 bg-dark-500 rounded-2xl"></div>
