@@ -7,8 +7,8 @@ import {
   type Signal,
 } from "@builder.io/qwik";
 import gsap from "gsap";
-import { ArtStudio } from "~/components/icon/artStudioText";
-import { GiggleText } from "~/components/icon/giggleText";
+// import { ArtStudio } from "~/components/icon/artStudioText";
+// import { GiggleText } from "~/components/icon/giggleText";
 
 interface Props {
   onDone?: Signal<boolean>;
