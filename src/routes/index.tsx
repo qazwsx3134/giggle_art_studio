@@ -39,7 +39,7 @@ export default component$(() => {
             <div class="text-5xl">Liquid Art</div>
             <div class="text-2xl text-white-700">introduce Liquid art</div>
             <button class="btn btn-outline btn-accent ring-1 ring-accent hover:ring-0 text-xl">
-              聯絡我們
+              <p>聯絡我們</p>
             </button>
           </div>
           {/* First section */}
