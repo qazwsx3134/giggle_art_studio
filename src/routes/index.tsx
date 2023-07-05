@@ -38,7 +38,7 @@ export default component$(() => {
           <div class="w-full flex flex-col items-center justify-center gap-6 text-white-500 my-6">
             <div class="text-5xl">Liquid Art</div>
             <div class="text-2xl text-white-700">introduce Liquid art</div>
-            <button class="btn btn-outline btn-accent ring-1 ring-accent hover:ring-0 text-2xl">
+            <button class="btn btn-outline btn-accent ring-1 ring-accent hover:ring-0 text-xl">
               聯絡我們
             </button>
           </div>
