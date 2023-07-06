@@ -11,15 +11,21 @@ import RightSlide from "~/components/loader/background/rightSlide";
 
 import styles from "./styles.css?inline";
 import Giggle from "~/components/loader/LoaderIcon/giggle";
+import { detectPortableDevice } from "~/utils/userAgent";
 
-export const useServerTimeLoader = routeLoader$(() => {
+export const useUserAgentLoader = routeLoader$(async (requestEvent) => {
+  const isMobile = detectPortableDevice(
+    requestEvent.request.headers.get("user-agent") || ""
+  );
   return {
-    date: new Date().toISOString(),
+    isMobile,
   };
 });
 
 export default component$(() => {
   useStyles$(styles);
+  // const ua = useUserAgentLoader();
+
   const onDone = useSignal(false);
 
   useVisibleTask$(() => {

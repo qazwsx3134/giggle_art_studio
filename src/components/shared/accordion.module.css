@@ -1,0 +1,13 @@
+.flex-anim {
+  flex: 1;
+  transition: flex 0.5s ease;
+}
+
+.flex-anim:hover {
+  flex: 7;
+}
+
+/* Default value: when not focus-within and hover first child flex 6 */
+.flex-wrapper:not(:focus-within):not(:hover) > :first-child {
+  flex: 7;
+}
