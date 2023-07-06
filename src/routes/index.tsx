@@ -43,9 +43,9 @@ export default component$(() => {
           <Title title="流體畫" subTitle="introduce Liquid art">
             <button
               q:slot="button"
-              class="btn btn-outline px-4 btn-accent ring-1 ring-accent hover:ring-0 text-xl font-sans"
+              class="btn btn-md btn-outline px-4 btn-accent ring-1 ring-accent hover:ring-0 text-xl font-sans"
             >
-              <p>聯絡我們</p>
+              聯絡我們
             </button>
           </Title>
 
@@ -60,9 +60,9 @@ export default component$(() => {
           <Title title="水彩" subTitle="introduce Water color">
             <button
               q:slot="button"
-              class="btn btn-outline px-4 btn-accent ring-1 ring-accent hover:ring-0 text-xl font-sans"
+              class="btn btn-md btn-outline px-4 btn-accent ring-1 ring-accent hover:ring-0 text-xl font-sans"
             >
-              <p>聯絡我們</p>
+              聯絡我們
             </button>
           </Title>
 
@@ -90,9 +90,9 @@ export default component$(() => {
           <Title title="合作">
             <button
               q:slot="button"
-              class="btn btn-outline px-4 btn-accent ring-1 ring-accent hover:ring-0 text-xl font-sans"
+              class="btn btn-md btn-outline px-4 btn-accent ring-1 ring-accent hover:ring-0 text-xl font-sans"
             >
-              <p>聯絡我們</p>
+              聯絡我們
             </button>
           </Title>
 
